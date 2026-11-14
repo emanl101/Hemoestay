@@ -1,0 +1,100 @@
+.garden-gallery {
+  min-width: 0;
+}
+
+.garden-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.garden-track .photo {
+  border-radius: calc(var(--glass-radius) - 10px);
+}
+
+.garden-track .photo:focus-visible {
+  outline-offset: -4px;
+}
+
+.garden-track .photo:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.garden-track img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.garden-track .photo:first-child img {
+  height: 100%;
+}
+
+@media (max-width: 760px) {
+  .garden-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .garden-track .photo {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
+
+  .garden-track .photo:first-child img {
+    height: auto;
+  }
+}
+
+.map-picker {
+  width: min(400px, calc(100% - 32px));
+  box-sizing: border-box;
+  padding: 24px;
+}
+
+.map-picker::backdrop {
+  background: #18271d42;
+  backdrop-filter: blur(5px);
+}
+
+.map-picker form { margin-bottom: 12px; }
+
+.map-picker form button {
+  border: 1px solid #263b3129;
+  border-radius: 999px;
+  background: #ffffff59;
+  padding-inline: 16px;
+}
+
+.map-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.map-links a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 46px;
+  padding: 11px 15px;
+  border: 1px solid #ffffffa8;
+  border-radius: 14px;
+  background: #ffffff59;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.map-links a:hover { background: #ffffffa6; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-picker[open]::backdrop {
+    animation: map-backdrop-in 360ms ease-out;
+  }
+
+  @keyframes map-backdrop-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
